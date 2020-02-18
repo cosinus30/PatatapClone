@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script type="text/javascript" src="assets/js/lib/paper-full.js"></script>
+    <script type="text/javascript" src="assets/js/lib/howler.js"></script>
+    <link rel="stylesheet" href="assets/css/circles.css" />
+    <script type="text/paperscript" canvas="myCanvas">
+
+      var keyData = {
+        a: {
+          color: "purple",
+          sound: new Howl({
+            src: ['assets/sounds/bubbles.mp3']
+          })
+        },
+        s: {
+          color: "green",
+          sound: new Howl({
+            src: ['assets/sounds/clay.mp3']
+          })
+        },
+        d: {
+          color: "white",
+          sound: new Howl({
+            src: ['assets/sounds/confetti']
+          })
+        },
+        f: {
+          color: "white",
+          sound: new Howl({
+            src: ['assets/sounds/corona.mp3']
+          })
+        },
+        g: {
+          color: "red",
+          sound: new Howl({
+            src: ['assets/sounds/dotted-spiral.mp3']
+          })
+        },
+        h: {
+          color: "white",
+          sound: new Howl({
+            src: ['assets/sounds/flash-1.mp3']
+          })
+        },
+        j: {
+          color: "blue",
+          sound: new Howl({
+            src: ['assets/sounds/glimmer.mp3']
+          })
+        },
+        k: {
+          color: "brown",
+          sound: new Howl({
+            src: ['assets/sounds/moon.mp3']
+          })
+        },
+        l: {
+          color: "yellow",
+          sound: new Howl({
+            src: ['assets/sounds/splits.mp3']
+          })
+        },
+        q: {
+          color: "purple",
+          sound: new Howl({
+            src: ['assets/sounds/bubbles.mp3']
+          })
+        },
+        w: {
+          color: "green",
+          sound: new Howl({
+            src: ['assets/sounds/clay.mp3']
+          })
+        },
+        e: {
+          color: "white",
+          sound: new Howl({
+            src: ['assets/sounds/confetti']
+          })
+        },
+        r: {
+          color: "white",
+          sound: new Howl({
+            src: ['assets/sounds/corona.mp3']
+          })
+        },
+        t: {
+          color: "red",
+          sound: new Howl({
+            src: ['assets/sounds/dotted-spiral.mp3']
+          })
+        },
+        y: {
+          color: "white",
+          sound: new Howl({
+            src: ['assets/sounds/flash-1.mp3']
+          })
+        },
+        u: {
+          color: "blue",
+          sound: new Howl({
+            src: ['assets/sounds/glimmer.mp3']
+          })
+        },
+        i: {
+          color: "brown",
+          sound: new Howl({
+            src: ['assets/sounds/moon.mp3']
+          })
+        },
+        o: {
+          color: "yellow",
+          sound: new Howl({
+            src: ['assets/sounds/splits.mp3']
+          })
+        }
+      }
+      var circles = [];
+      function onKeyDown(event) {
+        if(keyData[event.key]){
+          var maxPoint = new Point(view.size.width - 100, view.size.height - 100)
+          var randomPoint = maxPoint * Point.random() + new Point(100,100);
+          var myCircle = new Path.Circle(randomPoint, 300);
+          myCircle.fillColor = keyData[event.key].color;
+          keyData[event.key].sound.play();
+          circles.push(myCircle);
+        }
+      }
+
+      function onFrame(event){
+        for(var i = 0; i < circles.length; i++){
+          circles[i].fillColor.hue =+ 1;
+          circles[i].scale(.9)
+          if(circles[i].area < 1){
+            circles[i].remove(); // remove the circle from the canvas
+            circles.splice(i, 1); // remove the circle from the array
+          }
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <canvas id="myCanvas" resize></canvas>
+  </body>
+</html>
+
+<!--       
+ -->
